@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import bcryptjs from 'bcryptjs';
-import UserModel from './user.model.js';
+import Users from './user.model.js';
 
 async function connectToMongo() {
   try {
@@ -15,63 +15,53 @@ async function connectToMongo() {
   }
 }
 
-async function addUser(user) {
+const defaultUsers = [
+  {
+    email: "bmendoza@gmail.com",
+    username: "bmendoza",
+    id: "2019349",
+    name: "Brandon",
+    lastname: "Mendoza",
+    password: "123456",
+    roleUser: "SuperAdmin",
+    stateUser: true,
+  },
+  {
+    email: "amax@gmail.com",
+    username: "amax",
+    id: "2019189",
+    name: "Alejandro",
+    lastname: "Max",
+    password: "123456",
+    roleUser: "SuperAdmin",
+    stateUser: true,
+  },
+];
+
+const createDefaultUsers = async () => {
   try {
-    const existingUser = await UserModel.findOne({ email: user.email });
-
-    if (!existingUser) {
-      const salt = await bcryptjs.genSalt(10);
-      const hashedPassword = await bcryptjs.hash(user.password, salt);
-
-      await UserModel.create({
-        email: user.email,
-        username: user.username,
-        id: user.id,
-        name: user.name,
-        lastname: user.lastname,
-        password: user.password,
-        roleUser: user.roleUser,
-        stateUser: user.stateUser,
-      });
-
-      console.log(`Added user: ${user.email}`);
-    } else {
-      console.log(`exists user: ${user.email}`);
+    for (const userData of defaultUsers) {
+      const existingUser = await Users.findOne({ email: userData.email });
+      if (!existingUser) {
+        const encryptPassword = bcryptjs.hashSync(userData.password);
+        await Users.create({
+          ...userData,
+          password: encryptPassword,
+        });
+        console.log(`User ${userData.username} created successfully.`);
+      } else {
+        console.log(`User ${userData.email} already exists.`);
+      }
     }
   } catch (error) {
-    console.error(`Error adding user with email ${user.email}:`, error.message);
+    console.error.apply("Error creating default users:", error);
   }
 }
 
-async function addUsers() {
-  await connectToMongo();
-
-  const usersToInsert = [
-    {
-      email: "bmendoza@gmail.com",
-      username: "bmendoza",
-      id: "2019349",
-      name: "Brandon",
-      lastname: "Mendoza",
-      password: "123456",
-      roleUser: "SuperAdmin",
-      stateUser: true,
-    },
-    {
-      email: "amax@gmail.com",
-      username: "amax",
-      id: "2019189",
-      name: "Alejandro",
-      lastname: "Max",
-      password: "123456",
-      roleUser: "SuperAdmin",
-      stateUser: true,
-    },
-  ];
-
-  for (const user of usersToInsert) {
-    await addUser(user);
-  }
-}
-
-export default addUsers;
+createDefaultUsers()
+  .then(() => {
+    console.log("Default users setup completed.");
+  })
+  .catch((error) => {
+    console.error("Error in default users setup:", error);
+  })
