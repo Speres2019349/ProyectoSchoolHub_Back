@@ -14,19 +14,19 @@ const CourseSchema = new mongoose.Schema({
         require: true,
     },
     modules: [{
-        type: mongoose.Schema.Types.objectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Module',
     }],
-    certificate: [{
-        type: mongoose.Schema.Types.objectId,
-        ref: 'Certificate',
+    diplomas: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Diploma',
     }],
     progress: [{
-        type: mongoose.Schema.Types.objectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Progress',
     }],
     exams: [{
-        type: mongoose.Schema.Types.objectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Exams',
     }],
 })
