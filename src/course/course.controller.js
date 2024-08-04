@@ -24,8 +24,19 @@ export const coursesCreated = async (req, res) => {
         })
 
     } catch (e) {
-        console.error("You must enter a required field");
         console.error(e);
         res.status(500).json({ message: "An error occurred while creating the course" });
+    }
+}
+
+export const coursesGet = async (req, res) => {
+    try {
+        
+        const course = await Course.find();
+        res.status(200).json(course);
+
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ message: "An error occurred while displaying courses" });
     }
 }

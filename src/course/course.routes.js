@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { coursesCreated } from "./course.controller.js";
+import { coursesCreated, coursesGet } from "./course.controller.js";
 import { validateFields } from "../middlewares/validateFields.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
 
@@ -18,6 +18,15 @@ router.post(
         check("progress"),
         check("exams"),
         validateFields,
-    ],coursesCreated);
+    ],
+coursesCreated);
+
+router.get(
+    "/",
+    [
+        validarJWT,
+        validateFields,
+    ],
+coursesGet);
 
 export default router;
