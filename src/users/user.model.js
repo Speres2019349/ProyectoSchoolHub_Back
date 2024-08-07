@@ -10,7 +10,7 @@ const UserSchema = mongoose.Schema({
     username: {
         type: String,
     },
-    id: {
+    codeId: {
         type: String,
     },
     password: {
@@ -25,7 +25,7 @@ const UserSchema = mongoose.Schema({
     roleUser: {
         type: String,
         enum: roles,
-        default: "alumno"
+        default: "Alumno"
     },
     assignedCourses: [{
         type: mongoose.Schema.Types.ObjectId,

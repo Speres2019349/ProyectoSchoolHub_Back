@@ -3,7 +3,7 @@ import Users from '../users/user.model.js';
 import { generarJWT } from '../helpers/generate-JWT.js';
 
 export const register = async (req, res) => {
-  const { email, username, password, name, lastname, roleUser } = req.body;
+  const { email, username, password, name, lastname, roleUser, codeId } = req.body;
   const encryptPassword = bcryptjs.hashSync(password);
 
   try {
@@ -18,7 +18,8 @@ export const register = async (req, res) => {
       password: encryptPassword,
       name,
       lastname,
-      roleUser
+      roleUser,
+      codeId
     });
 
     await newUser.save();

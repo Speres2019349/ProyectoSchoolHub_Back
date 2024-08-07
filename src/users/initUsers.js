@@ -36,6 +36,16 @@ const defaultUsers = [
     roleUser: "SuperAdmin",
     stateUser: true,
   },
+  {
+    email: "amax@gmail.com",
+    username: "amax",
+    id: "2019189",
+    name: "Alejandro",
+    lastname: "Max",
+    password: "123456",
+    roleUser: "SuperAdmin",
+    stateUser: true,
+  },
 ];
 
 const createDefaultUsers = async () => {
