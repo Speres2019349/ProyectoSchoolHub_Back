@@ -7,6 +7,7 @@ import '../src/users/initUsers.js';
 import apiLimiter from '../src/middlewares/validar-cant-peticiones.js';
 import authRoutes from '../src/auth/auth.routes.js'
 import courseRoutes from '../src/course/course.routes.js'
+import usersRoutes from '../src/users/user.routes.js'
 class Server {
     constructor() {
         this.app = express();
@@ -14,6 +15,7 @@ class Server {
 
         this.authPath = '/schoolHub/v1/auth'
         this.coursePath = '/schoolHub/v1/course'
+        this.usersPath = '/schoolHub/v1/users'
 
         this.conectarDB(); 
         this.middlewares();
@@ -38,6 +40,7 @@ class Server {
     routes() {  
         this.app.use(this.authPath, authRoutes);
         this.app.use(this.coursePath, courseRoutes);
+        this.app.use(this.usersPath, usersRoutes);
     };
 
     listen() {

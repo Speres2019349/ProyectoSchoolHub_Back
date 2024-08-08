@@ -35,7 +35,7 @@ export const deleteUser = async (req, res) => {
             return res.status(403).send('You are not authorized to delete this user');
         }
 
-        const user = await User.findByIdAndUpdate(id, { state: false });
+        const user = await User.findByIdAndUpdate(id, { stateUser: false });
         res.status(200).send('The user is successfully deleted');
 
     } catch (error) {
