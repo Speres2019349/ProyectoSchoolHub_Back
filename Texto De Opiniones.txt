@@ -1,0 +1,20 @@
+
+
+	Validaciones Por Hacer
+	
+	- Validar que solo un admin pueda modificar un alumno
+	- Validar que el profesor y admin solo su propio usuario pueda cambiar
+	- Validar que el registro de un usuario solo lo pueda hacer un admin
+	- Validar que solo un admin pueda eliminar un usuario
+	- Validar que solo un admin y profesor puedan crear un curso
+	- Validar que al momento de crear el curso se cree por un codigo o token
+	- Validar solo los admin los pueden editar
+	- Validar solo los admin los pueden eliminar
+	- Validar que no puedan haber cursos con el mismo nombre 
+	- Validar asignacion de alumno por medio de codigo
+	- Validar que pueda crear modulos por medio de un codigo proporcionado de un admin
+	- Validar que al momento de querer ingresar a un curso le envie un correo al profesor y el de la autorizacion
+	
+	Validaciones Terminadas
+	
+	- 
